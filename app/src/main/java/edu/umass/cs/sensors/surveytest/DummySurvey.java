@@ -26,7 +26,7 @@ public class DummySurvey extends AppCompatActivity {
     }
 
     private void displaySurvey() {
-        
+
         if (getIntent().getAction() == MainActivity.DISPLAY_SURVEY_ACTION) {
             JSONObject surveyJSON;
             String prettyString;
@@ -34,7 +34,7 @@ public class DummySurvey extends AppCompatActivity {
 
             System.out.println(surveyString);
             try {
-                surveyJSON = new JSONObject(surveyString + "\n");
+                surveyJSON = new JSONObject(surveyString);
                 prettyString = surveyJSON.toString(2);
             } catch (JSONException e) {
                 e.printStackTrace();
