@@ -22,22 +22,28 @@ public class DummySurvey extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        displaySurvey();
+    }
 
-        JSONObject surveyJSON;
-        String prettyString;
-        String surveyString = getIntent().getStringExtra(MainActivity.ESCAPED_SURVEY);
+    private void displaySurvey() {
+        
+        if (getIntent().getAction() == MainActivity.DISPLAY_SURVEY_ACTION) {
+            JSONObject surveyJSON;
+            String prettyString;
+            String surveyString = getIntent().getStringExtra(MainActivity.ESCAPED_SURVEY);
 
-        System.out.println(surveyString);
-        try {
-            surveyJSON = new JSONObject(surveyString + "\n");
-            prettyString = surveyJSON.toString(2);
-        } catch (JSONException e) {
-            e.printStackTrace();
-            prettyString = "JSON error";
+            System.out.println(surveyString);
+            try {
+                surveyJSON = new JSONObject(surveyString + "\n");
+                prettyString = surveyJSON.toString(2);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                prettyString = "JSON error";
+            }
+
+            TextView surveyTextView = (TextView) findViewById(R.id.survey_text);
+            surveyTextView.setText(prettyString);
         }
-
-        TextView surveyTextView = (TextView)findViewById(R.id.survey_text);
-        surveyTextView.setText(prettyString);
     }
 
     public void sendSurveyResponse(View view) {

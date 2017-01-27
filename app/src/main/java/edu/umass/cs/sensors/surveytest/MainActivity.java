@@ -1,13 +1,10 @@
 package edu.umass.cs.sensors.surveytest;
 
 import android.content.Intent;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -15,7 +12,7 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String DISPLAY_SURVEY = "display";
+    public static String DISPLAY_SURVEY_ACTION = "display";
     public static String ESCAPED_SURVEY = "survey-escaped";
     public static String UNESCAPED_SURVEY = "survey-unescaped";
     public static String ESCAPED_RESPONSE = "response-escaped";
@@ -32,12 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSurvey(View view) {
         Intent surveyIntent = new Intent(this, DummySurvey.class);
-        surveyIntent.setAction(DISPLAY_SURVEY);
+        surveyIntent.setAction(DISPLAY_SURVEY_ACTION);
         surveyIntent.putExtra(UNESCAPED_SURVEY, getResources().getString(R.string.survey_JSON_unescaped));
         surveyIntent.putExtra(ESCAPED_SURVEY, getResources().getString(R.string.survey_JSON_escaped));
         startActivityForResult(surveyIntent, SURVEY_RESULT);
-
-//        System.out.println(R.string.survey_JSON_escaped);
     }
 
     @Override
