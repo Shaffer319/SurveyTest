@@ -12,13 +12,13 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static String DISPLAY_SURVEY_ACTION = "display";
-    public static String ESCAPED_SURVEY = "survey-escaped";
-    public static String UNESCAPED_SURVEY = "survey-unescaped";
-    public static String ESCAPED_RESPONSE = "response-escaped";
-    public static String UNESCAPED_RESPONSE = "response-unescaped";
-    public static int SURVEY_RESULT = 1;
-    public static int SUCCESSFUL_SURVEY_RESPONSE = 2;
+    public static String    DISPLAY_SURVEY_ACTION = "display";
+    public static String    ESCAPED_SURVEY_STRING = "survey-escaped";
+    public static String    UNESCAPED_SURVEY_STRING = "survey-unescaped";
+    public static String    ESCAPED_RESPONSE_STRING = "response-escaped";
+    public static String    UNESCAPED_RESPONSE_STRING = "response-unescaped";
+    public static int       SURVEY_RESULT = 1;
+    public static int       SUCCESSFUL_SURVEY_RESPONSE = 2;
 
 
     @Override
@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     public void openSurvey(View view) {
         Intent surveyIntent = new Intent(this, DummySurvey.class);
         surveyIntent.setAction(DISPLAY_SURVEY_ACTION);
-        surveyIntent.putExtra(UNESCAPED_SURVEY, getResources().getString(R.string.survey_JSON_unescaped));
-        surveyIntent.putExtra(ESCAPED_SURVEY, getResources().getString(R.string.survey_JSON_escaped));
+        surveyIntent.putExtra(UNESCAPED_SURVEY_STRING, getResources().getString(R.string.survey_JSON_unescaped));
+        surveyIntent.putExtra(ESCAPED_SURVEY_STRING, getResources().getString(R.string.survey_JSON_escaped));
         startActivityForResult(surveyIntent, SURVEY_RESULT);
     }
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SURVEY_RESULT) {
             if (resultCode == SUCCESSFUL_SURVEY_RESPONSE) {
-                String response = data.getStringExtra(ESCAPED_RESPONSE);
+                String response = data.getStringExtra(ESCAPED_RESPONSE_STRING);
                 try {
                     String prettyResponse = new JSONObject(response).toString(2);
                     Toast toast = Toast.makeText(this, prettyResponse, Toast.LENGTH_SHORT);

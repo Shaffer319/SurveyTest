@@ -30,7 +30,7 @@ public class DummySurvey extends AppCompatActivity {
         if (getIntent().getAction() == MainActivity.DISPLAY_SURVEY_ACTION) {
             JSONObject surveyJSON;
             String prettyString;
-            String surveyString = getIntent().getStringExtra(MainActivity.ESCAPED_SURVEY);
+            String surveyString = getIntent().getStringExtra(MainActivity.ESCAPED_SURVEY_STRING);
 
             System.out.println(surveyString);
             try {
@@ -50,8 +50,8 @@ public class DummySurvey extends AppCompatActivity {
         Intent response = getIntent();
         String escapedResponse = getResources().getString(R.string.survey_result_escaped);
         String unescapedResponse = getResources().getString(R.string.survey_result_unescaped);
-        response.putExtra(MainActivity.ESCAPED_RESPONSE, escapedResponse);
-        response.putExtra(MainActivity.UNESCAPED_RESPONSE, unescapedResponse);
+        response.putExtra(MainActivity.ESCAPED_RESPONSE_STRING, escapedResponse);
+        response.putExtra(MainActivity.UNESCAPED_RESPONSE_STRING, unescapedResponse);
         setResult(MainActivity.SUCCESSFUL_SURVEY_RESPONSE, response);
         finish();
     }
